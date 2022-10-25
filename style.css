@@ -43,3 +43,13 @@ header {
 #weather-search {
     margin-bottom: 1rem;
 }
+
+.btn {
+    width: 250px;
+    background-color: #fca311;
+    border: 2px solid #e5e5e5;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
