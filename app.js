@@ -18,4 +18,20 @@ searchButton.addEventListener('click', function(){
 
 });
 
+const url = 'https://api.collectapi.com/weather/getWeather?data.lang=en&data.city=Dallas'
+// const location = 'Dallas'
+
+async function fetchWeather() {
+    const repsonse = await fetch(url, {
+        method: 'GET',
+        headers: {
+            "content-type": "application/json",
+            "authorization": "apikey 37rnoKPwjY7lFwpC1JlmWG:6RxhStZ9y8nwTTlSKQkpJF"
+        }
+    });
+    const data = await repsonse.json();
+    console.log(data);
+}
+
+fetchWeather();
 
