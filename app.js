@@ -1,7 +1,7 @@
 const searchButton = document.getElementById('searchButton');
 const clearButton = document.getElementById('clearButton');
 
-searchButton.addEventListener('click', function(){
+searchButton.addEventListener('click', () => {
 
     const mailFormat = /^[A-Za-z]+$/;
 
@@ -18,20 +18,33 @@ searchButton.addEventListener('click', function(){
 
 });
 
-const url = 'https://api.collectapi.com/weather/getWeather?data.lang=en&data.city=Dallas'
-// const location = 'Dallas'
+searchButton.addEventListener('click', () => {
 
-async function fetchWeather() {
-    const repsonse = await fetch(url, {
-        method: 'GET',
-        headers: {
-            "content-type": "application/json",
-            "authorization": "apikey 37rnoKPwjY7lFwpC1JlmWG:6RxhStZ9y8nwTTlSKQkpJF"
+    const url = 'https://api.collectapi.com/weather/getWeather?data.lang=en&data.city=Dallas'
+    // const location = 'Dallas'
+    
+    async function fetchWeather() {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                "content-type": "application/json",
+                "authorization": "apikey 37rnoKPwjY7lFwpC1JlmWG:6RxhStZ9y8nwTTlSKQkpJF"
+            }
+        });
+    
+        if(!response.ok){
+            throw new Error(`HTTP error! Status: ${response.status}`)
         }
-    });
-    const data = await repsonse.json();
-    console.log(data);
-}
+    
+        
+        const data = await response.json();
+        console.log(data);
+    }
+    
+    fetchWeather();
 
-fetchWeather();
+
+});
+
+
 
