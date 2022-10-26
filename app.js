@@ -20,7 +20,7 @@ searchButton.addEventListener('click', () => {
 
 searchButton.addEventListener('click', () => {
 
-    const url = 'https://api.collectapi.com/weather/getWeather?data.lang=en&data.city=Dallas'
+    const url = 'https://api.collectapi.com/weather/getWeather?data.lang=en&data.city=Louisville'
     // const location = 'Dallas'
     
     async function fetchWeather() {
