@@ -20,31 +20,43 @@ searchButton.addEventListener('click', () => {
 
 searchButton.addEventListener('click', () => {
 
-    const url = 'https://api.collectapi.com/weather/getWeather?data.lang=en&data.city=Louisville'
-    // const location = 'Dallas'
-    
-    async function fetchWeather() {
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                "content-type": "application/json",
-                "authorization": "apikey 37rnoKPwjY7lFwpC1JlmWG:6RxhStZ9y8nwTTlSKQkpJF"
-            }
-        });
-    
-        if(!response.ok){
-            throw new Error(`HTTP error! Status: ${response.status}`)
-        }
-    
-        
-        const data = await response.json();
-        console.log(data);
-    }
-    
-    fetchWeather();
-
-
 });
+
+const url = 'https://api.collectapi.com/weather/getWeather?data.lang=en&data.city=Louisville'
+// const location = 'Dallas'
+
+async function fetchWeather() {
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            "content-type": "application/json",
+            "authorization": "apikey 37rnoKPwjY7lFwpC1JlmWG:6RxhStZ9y8nwTTlSKQkpJF"
+        }
+    });
+
+    if(!response.ok){
+        throw new Error(`HTTP error! Status: ${response.status}`)
+    }
+
+    const data = await response.json();
+
+    displayWeather(data)
+
+    console.log(data.result[0].day);
+
+}
+
+fetchWeather();
+
+function displayWeather(data){
+    const weatherToday = data.result[0]
+    const weatherDiv = document.getElementById('weatherCard1');
+    const todaysDate = weatherToday.day;
+    const heading = document.createElement('h1');
+    heading.innerHTML = todaysDate;
+    weatherDiv.appendChild(heading);
+};
+
 
 
 
