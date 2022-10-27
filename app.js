@@ -22,11 +22,11 @@ searchButton.addEventListener('click', () => {
 
 });
 
-const url = 'https://api.collectapi.com/weather/getWeather?data.lang=en&data.city=Louisville'
-// const location = 'Dallas'
+const api = 'https://api.collectapi.com/weather/getWeather?data.lang=en&data.city=Louisville'
+// const url = api + document.getElementById('inputField').value
 
 async function fetchWeather() {
-    const response = await fetch(url, {
+    const response = await fetch(api, {
         method: 'GET',
         headers: {
             "content-type": "application/json",
@@ -40,7 +40,7 @@ async function fetchWeather() {
 
     const data = await response.json();
 
-    displayWeather(data)
+    displayWeather(data);
 
     console.log(data);
 
@@ -50,22 +50,27 @@ fetchWeather();
 
 function displayWeather(data){
     const weatherToday = data.result[0]
-    const weatherDiv = document.getElementById('weatherCard1');
+    const weatherDiv = document.getElementById('weatherCard');
+
     const todaysDate = weatherToday.day;
     const heading = document.createElement('h2');
     heading.innerHTML = todaysDate;
     weatherDiv.appendChild(heading);
 
-    const todaysweather = weatherToday.degree;
-    const body = document.createElement('p');
-    body.innerHTML = todaysweather;
-    weatherDiv.appendChild(body);
+    const todaysWeather = weatherToday.degree;
+    const para = document.createElement('p');
+    para.innerHTML = todaysWeather;
+    weatherDiv.appendChild(para);
 
-    // const image = document.createElement('img');
-    // image.src = weatherToday.icon;
-    // weatherDiv.appendChild(image);
+    const weatherTom = data.result[1]
+    const para1 = document.createElement('p');
+    const tomorrowsDate = weatherTom.day;
+    para1.innerHTML = tomorrowsDate;
+    weatherDiv.appendChild(para1);
 
-
+    const image = document.createElement('img');
+    image.src = weatherToday.icon;
+    weatherDiv.appendChild(image);
     
 };
 
