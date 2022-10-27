@@ -42,7 +42,7 @@ async function fetchWeather() {
 
     displayWeather(data)
 
-    console.log(data.result[0].day);
+    console.log(data);
 
 }
 
@@ -52,9 +52,21 @@ function displayWeather(data){
     const weatherToday = data.result[0]
     const weatherDiv = document.getElementById('weatherCard1');
     const todaysDate = weatherToday.day;
-    const heading = document.createElement('h1');
+    const heading = document.createElement('h2');
     heading.innerHTML = todaysDate;
     weatherDiv.appendChild(heading);
+
+    const todaysweather = weatherToday.degree;
+    const body = document.createElement('p');
+    body.innerHTML = todaysweather;
+    weatherDiv.appendChild(body);
+
+    // const image = document.createElement('img');
+    // image.src = weatherToday.icon;
+    // weatherDiv.appendChild(image);
+
+
+    
 };
 
 
