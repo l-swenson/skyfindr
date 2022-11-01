@@ -53,7 +53,13 @@ async function fetchWeather() {
 
     <h2 class="day-name">
         ${weatherToday.day}
-    </h2>`;
+    </h2>
+    <p class="city-temp">
+        ${Math.round(weatherToday.degree)}
+    </p>
+    
+
+    `;
 
     li.innerHTML = markup;
 
