@@ -40,39 +40,59 @@ async function fetchWeather() {
 
     const data = await response.json();
 
-    displayWeather(data);
+    
 
-    console.log(data);
+    const weatherToday = data.result[0]
+    const menu = document.querySelector("#weatherCard")
+
+    const li = document.createElement("li");
+
+    li.classList.add("day");
+
+    const markup = `
+
+    <h2 class="day-name">
+        ${weatherToday.day}
+    </h2>`;
+
+    li.innerHTML = markup;
+
+    menu.appendChild(li);
+
+
+    console.log(li);
+
+    // displayWeather(data);
 
 }
 
 fetchWeather();
 
-function displayWeather(data){
-    const weatherToday = data.result[0]
-    const weatherDiv = document.getElementById('weatherCard');
+// function displayWeather(data){
+//     const weatherToday = data.result[0]
+//     const weatherDiv = document.getElementById('weatherCard');
 
-    const todaysDate = weatherToday.day;
-    const heading = document.createElement('h2');
-    heading.innerHTML = todaysDate;
-    weatherDiv.appendChild(heading);
+//     const todaysDate = weatherToday.day;
+//     const heading = document.createElement('h2');
+//     heading.innerHTML = todaysDate;
+//     weatherDiv.appendChild(heading);
 
-    const todaysWeather = weatherToday.degree;
-    const para = document.createElement('p');
-    para.innerHTML = todaysWeather;
-    weatherDiv.appendChild(para);
+//     const todaysWeather = weatherToday.degree;
+//     const para = document.createElement('p');
+//     para.innerHTML = todaysWeather;
+//     weatherDiv.appendChild(para);
 
-    const weatherTom = data.result[1]
-    const para1 = document.createElement('p');
-    const tomorrowsDate = weatherTom.day;
-    para1.innerHTML = tomorrowsDate;
-    weatherDiv.appendChild(para1);
+//     const weatherTom = data.result[1]
+//     const para1 = document.createElement('p');
+//     const tomorrowsDate = weatherTom.day;
+//     para1.innerHTML = tomorrowsDate;
+//     weatherDiv.appendChild(para1);
 
-    const image = document.createElement('img');
-    image.src = weatherToday.icon;
-    weatherDiv.appendChild(image);
+//     const image = document.createElement('img');
+//     image.src = weatherToday.icon;
+//     weatherDiv.appendChild(image);
     
-};
+// };
 
 
 
