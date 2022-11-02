@@ -18,10 +18,6 @@ searchButton.addEventListener('click', () => {
 
 });
 
-clearButton.addEventListener('click', () => {
-
-});
-
 
 function weatherApi() {
 
@@ -49,7 +45,7 @@ function weatherApi() {
 
         const li = document.createElement("li");
 
-        li.classList.add("day");
+        li.classList.add("cityCard");
 
     const markup = `
 
@@ -84,3 +80,8 @@ function weatherApi() {
     fetchWeather();
 
 };
+
+
+clearButton.addEventListener('click', () => {
+    document.querySelector("#weatherCard").innerHTML = ' ';
+});
