@@ -63,7 +63,7 @@ function weatherApi() {
         </p>
         <hr/>
         <div id="weatherTomorrow">
-            <p>Weather Tomorrow</p>
+            <p>Weather Tomorrow:</p>
             ${Math.round(data.result[1].degree)}<sup>°F</sup> ${data.result[1].description}
         </div>
         `;
