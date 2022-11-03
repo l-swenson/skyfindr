@@ -1,7 +1,8 @@
-let express = require('express')
-let app = express();
+const express = require('express')
+const {MongoClient} = require('mongodb');
+const app = express();
 
-let router = express.Router();
+const router = express.Router();
 
 router.get('/', function(req, res, next) {
     res.send("API");
@@ -9,6 +10,6 @@ router.get('/', function(req, res, next) {
 
 app.use('/api/', router);
 
-let server = app.listen(5000, function() {
+const server = app.listen(5000, function() {
     console.log('Server listening on port 5000!')
 })
