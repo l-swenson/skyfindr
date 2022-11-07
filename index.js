@@ -40,6 +40,9 @@ run().catch(console.dir);
 
 const router = express.Router();
 
+rounter.route("/weather")
+
+
 router.get('/', function(req, res, next) {
     res.send("API");
 })
