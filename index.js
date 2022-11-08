@@ -1,6 +1,5 @@
 const express = require('express')
 const {MongoClient} = require("mongodb");
-const app = express();
 
 const url = 'mongodb+srv://lswenson:HowardLakeDB2020@cluster0.powjsj7.mongodb.net/?retryWrites=true&w=majority'
 const client = new MongoClient(url);
@@ -25,9 +24,6 @@ async function run() {
 
         console.log(myDoc);
 
-
-
-
     } catch (err) {
         console.log(err.stack);
     }
@@ -40,7 +36,10 @@ run().catch(console.dir);
 
 const router = express.Router();
 
-rounter.route("/weather")
+router.put("/weather", async (req, res) => {
+    await col.insertOne(req.body)
+    res.send(req.body)
+})
 
 
 router.get('/', function(req, res, next) {
