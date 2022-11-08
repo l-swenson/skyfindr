@@ -47,13 +47,14 @@ function weatherApi() {
 
         li.classList.add("cityCard");
 
+
     const markup = `
 
         <h2 class="city-name">
             ${data.city}
         </h2>
         <p class="city-temp">
-            ${Math.round(weatherToday.degree)}<sup>°F</sup>
+            ${Math.round(((weatherToday.degree * 9) / 5 + 32))}<sup>°F</sup>
         </p>
         <figure>
             <img class="weather-icon" src=${weatherToday.icon}>
@@ -64,7 +65,7 @@ function weatherApi() {
         <hr/>
         <div id="weatherTomorrow">
             <p>Weather Tomorrow:</p>
-            ${Math.round(data.result[1].degree)}<sup>°F</sup> ${data.result[1].description}
+            ${Math.round((data.result[1].degree * 9) / 5 + 32)}<sup>°F</sup> ${data.result[1].description}
         </div>
         `;
 
