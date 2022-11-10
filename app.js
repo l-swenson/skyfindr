@@ -6,10 +6,10 @@ searchButton.addEventListener('click', () => {
 
     const mailFormat = /^[A-Za-z ]+$/;
 
-    if(inputField.value.length === 0){
+    if (inputField.value.length === 0) {
         alert("Please enter a city name!")
     }
-    else if (inputField.value.match(mailFormat)){
+    else if (inputField.value.match(mailFormat)) {
         weatherApi()
     }
     else {
@@ -17,7 +17,6 @@ searchButton.addEventListener('click', () => {
     }
 
 });
-
 
 function weatherApi() {
 
@@ -40,39 +39,37 @@ function weatherApi() {
 
         console.log(data);
 
-        const weatherToday = data.result[0]
-        const menu = document.querySelector("#weatherCard")
+        let array = [data.result[0], data.result[1], data.result[2]]
 
-        const li = document.createElement("li");
+        array.forEach(function (item) {
 
-        li.classList.add("cityCard");
+            const menu = document.querySelector("#weatherCard")
+            const list = document.createElement("li");
+            list.classList.add("cityCard");
 
+            const markup = `
 
-    const markup = `
+                <h2 class="city-name">
+                    ${item.day}
+                </h2>
+                <p class="city-temp">
+                    ${Math.round(((item.degree * 9) / 5 + 32))}<sup>°F</sup>
+                </p>
+                <figure>
+                    <img class="weather-icon" src=${item.icon}>
+                </figure>
+                <p class="city-desc">
+                    ${item.description}
+                </p>
+                <hr/>
+                <div id="weatherTomorrow">
+                    <p>High:</p> ${Math.round((item.max * 9) / 5 + 32)}<sup>°F</sup> <p>Low:</p> ${Math.round((item.min * 9) / 5 + 32)}<sup>°F</sup>
+                </div>
+            `;
 
-        <h2 class="city-name">
-            ${data.city}
-        </h2>
-        <p class="city-temp">
-            ${Math.round(((weatherToday.degree * 9) / 5 + 32))}<sup>°F</sup>
-        </p>
-        <figure>
-            <img class="weather-icon" src=${weatherToday.icon}>
-        </figure>
-        <p class="city-desc">
-            ${weatherToday.description}
-        </p>
-        <hr/>
-        <div id="weatherTomorrow">
-            <p>Weather Tomorrow:</p>
-            ${Math.round((data.result[1].degree * 9) / 5 + 32)}<sup>°F</sup> ${data.result[1].status}
-        </div>
-        `;
-
-        li.innerHTML = markup;
-        menu.appendChild(li);
-
-
+            list.innerHTML = markup;
+            menu.appendChild(list);
+        })
     }
 
     inputField.value = "";
@@ -82,7 +79,44 @@ function weatherApi() {
 
 };
 
-
 clearButton.addEventListener('click', () => {
     document.querySelector("#weatherCard").innerHTML = ' ';
 });
+
+
+    //     const weatherToday = data.result[0]
+    //     const menu = document.querySelector("#weatherCard")
+
+    //     const li = document.createElement("li");
+
+    //     li.classList.add("cityCard");
+
+
+    // const markup = `
+
+    //     <h2 class="city-name">
+    //         ${data.city}
+    //     </h2>
+    //     <p class="city-temp">
+    //         ${Math.round(((weatherToday.degree * 9) / 5 + 32))}<sup>°F</sup>
+    //     </p>
+    //     <figure>
+    //         <img class="weather-icon" src=${weatherToday.icon}>
+    //     </figure>
+    //     <p class="city-desc">
+    //         ${weatherToday.description}
+    //     </p>
+    //     <hr/>
+    //     <div id="weatherTomorrow">
+    //         <p>Weather Tomorrow:</p>
+    //         ${Math.round((data.result[1].degree * 9) / 5 + 32)}<sup>°F</sup> ${data.result[1].status}
+    //     </div>
+    //     `;
+
+    //     li.innerHTML = markup;
+    //     menu.appendChild(li);
+
+
+    // }
+
+   
