@@ -1,53 +1,57 @@
 const express = require('express');
 const {MongoClient} = require("mongodb");
-const mongoose = require('mongoose');
-
-var app = express();
-var port = 3000;
-app.use(express.json());
- 
-app.get("/:name", (req, res) => {
-    res.send('your name is ' + req.params.name);
-});
- 
-app.listen(port, () => {
- console.log("Server listening on port " + port);
-});
-
 
 // Mongodb 
 
 const url = 'mongodb+srv://lswenson:HowardLakeDB2020@cluster0.powjsj7.mongodb.net/?retryWrites=true&w=majority'
 const client = new MongoClient(url);
-// const db = client.db(dbName);
-// const collection = db.collection("weather-info");
+const db = client.db('city');
+const collection = db.collection("city-name");
 
-async function run() {
-    try {
-        await client.connect();
-        console.log("Connected correctly to server");
-        const db = client.db(dbName);
-        const collection = db.collection("weather-info");
+var app = express();
+var port = 3000;
+app.use(express.static('public'))
+app.use(express.json());
+ 
 
-        let weatherToday = {
-            "day": "Monday", 
-            "degree": 25.16, 
-            "description": "moderate rain"
-        }
+app.post('/addlocation', async (req, res) => {
+    await collection.insertOne(req.body)
+    res.send(req.body)
+})
 
-        const p = await collection.insertOne(weatherToday);
+client.connect().then(() => {
+    console.log('Connected to mongodb')
+    app.listen(port, () => {
+        console.log(`Listening on port ${port}`)
+    })
+})
 
-        const myDoc = await collection.findOne();
+// async function run() {
+//     try {
+//         await client.connect();
+//         console.log("Connected correctly to server");
+//         const db = client.db(dbName);
+//         const collection = db.collection("weather-info");
 
-        console.log(myDoc);
+//         let weatherToday = {
+//             "day": "Monday", 
+//             "degree": 25.16, 
+//             "description": "moderate rain"
+//         }
 
-    } catch (err) {
-        console.log(err.stack);
-    }
-    finally {
-        await client.close();
-    }
-}
+//         const p = await collection.insertOne(weatherToday);
 
-run().catch(console.dir);
+//         const myDoc = await collection.findOne();
+
+//         console.log(myDoc);
+
+//     } catch (err) {
+//         console.log(err.stack);
+//     }
+//     finally {
+//         await client.close();
+//     }
+// }
+
+// run().catch(console.dir);
 

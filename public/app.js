@@ -37,7 +37,7 @@ function weatherApi() {
 
         const data = await response.json();
 
-        // console.log(data);
+        console.log(data);
 
         let array = [data.result[0], data.result[1], data.result[2]]
 
