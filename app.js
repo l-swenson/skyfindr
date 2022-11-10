@@ -43,7 +43,6 @@ function weatherApi() {
 
         array.forEach(function (item) {
 
-            const menu = document.querySelector("#weatherCard")
             const list = document.createElement("li");
             list.classList.add("cityCard");
 
@@ -62,13 +61,13 @@ function weatherApi() {
                     ${item.description}
                 </p>
                 <hr/>
-                <div id="weatherTomorrow">
-                    <p>High:</p> ${Math.round((item.max * 9) / 5 + 32)}<sup>°F</sup> <p>Low:</p> ${Math.round((item.min * 9) / 5 + 32)}<sup>°F</sup>
+                <div class="high-low">
+                    <p>High: </p> ${Math.round((item.max * 9) / 5 + 32)}<sup>°F  </sup> <p>Low: </p> ${Math.round((item.min * 9) / 5 + 32)}<sup>°F</sup>
                 </div>
             `;
 
             list.innerHTML = markup;
-            menu.appendChild(list);
+            document.querySelector("#weatherCard").appendChild(list);
         })
     }
 

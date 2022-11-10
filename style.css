@@ -77,16 +77,35 @@ input, textarea {
 }
 
 .cityCard {
+    width: 200px;
     background-color: #8b8c8957;
     border: 2px solid black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     border-radius: 12px;
-    padding: 1rem;
+    padding: 1.3rem;
     margin: 1rem;
+    font-size: 18px;
+    text-align: center;
+
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+         -o-animation: fadein 2s; /* Opera < 12.1 */
+            animation: fadein 2s;
+}
+
+.high-low {
+    display: flex;
+    padding-top: .3rem;
+    gap: .15rem;
 }
 
 #weatherCard img {
     width: 80px;
+}
+
+
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
