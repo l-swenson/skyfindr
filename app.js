@@ -37,7 +37,7 @@ function weatherApi() {
 
         const data = await response.json();
 
-        console.log(data);
+        // console.log(data);
 
         let array = [data.result[0], data.result[1], data.result[2]]
 
@@ -82,6 +82,7 @@ clearButton.addEventListener('click', () => {
     document.querySelector("#weatherCard").innerHTML = ' ';
 });
 
+// ADD later as an option for people to search for different cities at the same time. 
 
     //     const weatherToday = data.result[0]
     //     const menu = document.querySelector("#weatherCard")
