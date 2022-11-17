@@ -1,5 +1,6 @@
 const express = require('express');
 const {MongoClient} = require("mongodb");
+const mongoose = require("mongoose");
 
 // Mongodb 
 
@@ -22,7 +23,7 @@ app.post('/addlocation', async (req, res) => {
 client.connect().then(() => {
     console.log('Connected to mongodb')
     app.listen(port, () => {
-        console.log(`Listening on port ${port}`)
+        console.log("Listening on port" + port)
     })
 })
 

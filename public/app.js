@@ -2,23 +2,25 @@ const searchButton = document.getElementById('searchButton');
 const clearButton = document.getElementById('clearButton');
 const randomCityBtn = document.getElementById('randomCityBtn');
 const inputField = document.getElementById('inputField');
+const weatherCardContent = document.querySelector("#weatherCard")
+const resultsTitleContent = document.getElementById("resultTitle")
 
 //  Regex to validate city input 
 
 searchButton.addEventListener('click', () => {
 
-    const mailFormat = /^[A-Za-z ]+$/;
+    const textFormat = /^[A-Za-z ]+$/;
 
     if (inputField.value.length === 0) {
-        alert("Please enter a city name!")
+        alert("Oops! Please enter a city name!")
     }
-    else if (inputField.value.match(mailFormat)) {
+    else if (inputField.value.match(textFormat)) {
         searchButton.disabled = true;
         randomCityBtn.disabled = true;
         weatherApi()
     }
     else {
-        alert("Please enter a city name!")
+        alert("Oops! Please enter a city name!")
     }
 });
 
@@ -42,6 +44,8 @@ function weatherApi() {
         }
 
         const data = await response.json();
+
+        resultsTitleContent.innerHTML += `<h2>Here's what the weather looks like in ${inputField.value}!</h2>`
 
         let array = [data.result[0], data.result[1], data.result[2]]
 
@@ -71,11 +75,12 @@ function weatherApi() {
                 `;
 
             list.innerHTML = markup;
-            document.querySelector("#weatherCard").appendChild(list);
+            weatherCardContent.appendChild(list);
+
         })
     }
 
-    inputField.value = "";
+    
     fetchWeather();
 
 };
@@ -85,7 +90,7 @@ function weatherApi() {
 randomCityBtn.addEventListener('click', () => {
     const cityList = ["Albuquerque", "Abilene", "Akron", "Boise", "Tulsa", "Boston", "New York City", "Cleveland", "Indianapolis", "Honolulu", "Dallas", "Lexington", "Houston", "Buffalo", "Chicago", "Salt Lake City", "San Antonio", "San Bernardino", "Minneapolis", "Detroit", "San Francisco"];
     const random = Math.floor(Math.random() * cityList.length);
-    document.querySelector("#inputField").value = cityList[random];
+    inputField.value = cityList[random];
     weatherApi();
     searchButton.disabled = true;
     randomCityBtn.disabled = true;
@@ -94,11 +99,12 @@ randomCityBtn.addEventListener('click', () => {
 //  Clear results button 
 
 clearButton.addEventListener('click', () => {
-    document.querySelector("#weatherCard").innerHTML = ' ';
+    weatherCardContent.innerHTML = ' ';
     inputField.value = "";
     searchButton.disabled = false;
     randomCityBtn.disabled = false;
     inputField.focus();
+    resultsTitleContent.innerHTML = ' ';
 });
 
 
