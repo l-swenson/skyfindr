@@ -45,7 +45,7 @@ function weatherApi() {
 
         const data = await response.json();
 
-        resultsTitleContent.innerHTML += `<h2>Here's what the weather looks like in ${inputField.value}!</h2>`
+        resultsTitleContent.innerHTML += `<h2>Here's the weather in ${inputField.value}!</h2><hr>`
 
         let array = [data.result[0], data.result[1], data.result[2]]
 
@@ -58,7 +58,7 @@ function weatherApi() {
 
                     <h2 class="city-name">
                         ${item.day}
-                    </h2>
+                    </h2><hr>
                     <p class="city-temp">
                         ${Math.round(((item.degree * 9) / 5 + 32))}<sup>°F</sup>
                     </p>
@@ -80,7 +80,6 @@ function weatherApi() {
         })
     }
 
-    
     fetchWeather();
 
 };

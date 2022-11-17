@@ -82,7 +82,7 @@ input, textarea {
 
 .cityCard {
     width: 200px;
-    background-color: #8b8c8957;
+    background-color: #bcbdb957;
     border: 2px solid black;
     border-radius: 12px;
     padding: 1.3rem;
@@ -92,8 +92,13 @@ input, textarea {
     animation: fadein 2s;
 }
 
+.city-temp{
+    font-size: 1.5rem;
+}
+
 .high-low {
     display: flex;
+    justify-content: center;
     padding-top: .3rem;
     gap: .15rem;
 }
@@ -103,12 +108,10 @@ input, textarea {
 }
 
 
-
 @keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
-
 
 
 @media only screen and (max-width: 768px) {
@@ -118,5 +121,10 @@ input, textarea {
 
     .cityCard {
         width: 250px;
+    }
+
+    .result-header {
+        align-items: center;
+        max-width: 60%;
     }
   }
