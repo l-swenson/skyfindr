@@ -23,6 +23,7 @@ searchButton.addEventListener('click', () => {
 });
 
 // API call and markup
+
 function weatherApi() {
 
     const api = `https://api.collectapi.com/weather/getWeather?data.lang=en&data.city=${inputField.value}`
@@ -44,30 +45,30 @@ function weatherApi() {
 
         let array = [data.result[0], data.result[1], data.result[2]]
 
-        array.forEach(function (item) {
+            array.forEach(function (item) {
 
-            const list = document.createElement("li");
-            list.classList.add("cityCard");
+                const list = document.createElement("li");
+                list.classList.add("cityCard");
 
-            const markup = `
+                const markup = `
 
-                <h2 class="city-name">
-                    ${item.day}
-                </h2>
-                <p class="city-temp">
-                    ${Math.round(((item.degree * 9) / 5 + 32))}<sup>°F</sup>
-                </p>
-                <figure>
-                    <img class="weather-icon" src=${item.icon}>
-                </figure>
-                <p class="city-desc">
-                    ${item.description}
-                </p>
-                <hr/>
-                <div class="high-low">
-                    <p>High: </p> ${Math.round((item.max * 9) / 5 + 32)}<sup>°F  </sup> <p>Low: </p> ${Math.round((item.min * 9) / 5 + 32)}<sup>°F</sup>
-                </div>
-            `;
+                    <h2 class="city-name">
+                        ${item.day}
+                    </h2>
+                    <p class="city-temp">
+                        ${Math.round(((item.degree * 9) / 5 + 32))}<sup>°F</sup>
+                    </p>
+                    <figure>
+                        <img class="weather-icon" src=${item.icon}>
+                    </figure>
+                    <p class="city-desc">
+                        ${item.description}
+                    </p>
+                    <hr/>
+                    <div class="high-low">
+                        <p>High: </p> ${Math.round((item.max * 9) / 5 + 32)}<sup>°F  </sup> <p>Low: </p> ${Math.round((item.min * 9) / 5 + 32)}<sup>°F</sup>
+                    </div>
+                `;
 
             list.innerHTML = markup;
             document.querySelector("#weatherCard").appendChild(list);
@@ -99,9 +100,6 @@ clearButton.addEventListener('click', () => {
     randomCityBtn.disabled = false;
     inputField.focus();
 });
-
-
-
 
 
 // ADD later as an option for people to search for different cities at the same time. 

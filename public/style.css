@@ -41,7 +41,7 @@ header {
 }
 
 .search-section {
-    padding: 1rem;
+    padding: 1rem 1rem 0rem 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -67,13 +67,17 @@ input, textarea {
 
 .btn {
     width: 250px;
-    padding: .2rem;
+    padding: .45rem;
     background-color: #f5cb5c;
     border: 2px solid #e5e5e5;
     border-radius: 12px;
     text-decoration: none;
     font-size: 16px;
     cursor: pointer;
+}
+
+#randomCityBtn{
+    background-color: #ff7247;
 }
 
 .cityCard {
@@ -85,12 +89,7 @@ input, textarea {
     margin: 1rem;
     font-size: 18px;
     text-align: center;
-
-    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-       -moz-animation: fadein 2s; /* Firefox < 16 */
-        -ms-animation: fadein 2s; /* Internet Explorer */
-         -o-animation: fadein 2s; /* Opera < 12.1 */
-            animation: fadein 2s;
+    animation: fadein 2s;
 }
 
 .high-low {
@@ -109,3 +108,15 @@ input, textarea {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+
+
+
+@media only screen and (max-width: 768px) {
+    .results-wrapper {
+        flex-direction: column;
+    }
+
+    .cityCard {
+        width: 250px;
+    }
+  }
