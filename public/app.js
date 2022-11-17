@@ -1,6 +1,9 @@
 const searchButton = document.getElementById('searchButton');
 const clearButton = document.getElementById('clearButton');
+const randomCityBtn = document.getElementById('randomCityBtn');
 const inputField = document.getElementById('inputField');
+
+//  Regex to validate city input 
 
 searchButton.addEventListener('click', () => {
 
@@ -10,14 +13,16 @@ searchButton.addEventListener('click', () => {
         alert("Please enter a city name!")
     }
     else if (inputField.value.match(mailFormat)) {
+        searchButton.disabled = true;
+        randomCityBtn.disabled = true;
         weatherApi()
     }
     else {
         alert("Please enter a city name!")
     }
-
 });
 
+// API call and markup
 function weatherApi() {
 
     const api = `https://api.collectapi.com/weather/getWeather?data.lang=en&data.city=${inputField.value}`
@@ -36,8 +41,6 @@ function weatherApi() {
         }
 
         const data = await response.json();
-
-        console.log(data);
 
         let array = [data.result[0], data.result[1], data.result[2]]
 
@@ -72,21 +75,32 @@ function weatherApi() {
     }
 
     inputField.value = "";
-    inputField.focus();
-
     fetchWeather();
 
 };
 
-clearButton.addEventListener('click', () => {
-    document.querySelector("#weatherCard").innerHTML = ' ';
-});
+// Button to populate a random city in the search field
 
 randomCityBtn.addEventListener('click', () => {
     const cityList = ["Albuquerque", "Abilene", "Akron", "Boise", "Tulsa", "Boston", "New York City", "Cleveland", "Indianapolis", "Honolulu", "Dallas", "Lexington", "Houston", "Buffalo", "Chicago", "Salt Lake City", "San Antonio", "San Bernardino", "Minneapolis", "Detroit", "San Francisco"];
     const random = Math.floor(Math.random() * cityList.length);
     document.querySelector("#inputField").value = cityList[random];
+    weatherApi();
+    searchButton.disabled = true;
+    randomCityBtn.disabled = true;
 });
+
+//  Clear results button 
+
+clearButton.addEventListener('click', () => {
+    document.querySelector("#weatherCard").innerHTML = ' ';
+    inputField.value = "";
+    searchButton.disabled = false;
+    randomCityBtn.disabled = false;
+    inputField.focus();
+});
+
+
 
 
 
