@@ -82,6 +82,14 @@ clearButton.addEventListener('click', () => {
     document.querySelector("#weatherCard").innerHTML = ' ';
 });
 
+randomCityBtn.addEventListener('click', () => {
+    const cityList = ["Albuquerque", "Abilene", "Akron", "Boise", "Tulsa", "Boston", "New York City", "Cleveland", "Indianapolis", "Honolulu", "Dallas", "Lexington", "Houston", "Buffalo", "Chicago", "Salt Lake City", "San Antonio", "San Bernardino", "Minneapolis", "Detroit", "San Francisco"];
+    const random = Math.floor(Math.random() * cityList.length);
+    document.querySelector("#inputField").value = cityList[random];
+});
+
+
+
 // ADD later as an option for people to search for different cities at the same time. 
 
     //     const weatherToday = data.result[0]
